@@ -3,6 +3,7 @@ const apiRouter = Router()
 let helpers = require('../config/helpers.js')
 
 let User = require('../db/schema.js').User
+let Dish = require('../db/schema.js').Dish
 
   
   apiRouter
@@ -39,6 +40,46 @@ let User = require('../db/schema.js').User
         })
       })  
     })
+
+    //DISH AREA
+
+    //this route will create a brand new dish that will be put on the mongo database
+    apiRouter
+      .post('/dishes/', function(request,response){ //time to create a brand new dish on the database
+        let dish = new Dish(request.body) //create new instance of the Schema, response.body is all the info created from client
+        dish.save(function(error){
+          if(error) {
+            response.send(error)
+          } else {
+            response.json(dish)
+          }
+        })
+      })
+      .get('/dishes/', function(request,response){
+        Dish.find(request.query, function(error,records){ //request.query parses the parameters and turns them into an object
+          if(error) {
+            response.send(error)
+          } else {
+            response.json(records)
+          }
+        })
+      })
+
+    apiRouter
+      .get('/users/dishes', function(request,response){
+        //if there is a user session then there is a user object on the request object
+        //i want to get all dishes where the author ID on the dish matches the current ID of the user
+        Dish.find({authorId: request.user._id}, function(error,records){
+          if(error){
+            response.send(error)
+          } else {
+            response.json(records)
+          }
+        })
+      })
+
+
+
 
     // Routes for a Model(resource) should have this structure
 
