@@ -13,17 +13,17 @@ authRouter
 
     User.find({email: req.body.email}, function(err, results){
 
-      if(results !== null && results.length > 0) { 
+      if(results !== null && results.length > 0) {
         let record = {}
-        record.msg = "record already exists" ;      
+        record.msg = "record already exists" ;
         record.data = results
         res.json(record)
-        return 
+        return
       }
 
       newUser.save(function(err){
         req.login(req.body, function(){
-          res.json(newUser)   
+          res.json(newUser)
         })
       })
     })
@@ -44,7 +44,7 @@ authRouter
       else {
         let userCopy = JSON.parse(JSON.stringify(req.user))
         userCopy.password = ''
-        res.json(userCopy)        
+        res.json(userCopy)
       }
     }
   )
