@@ -62,4 +62,4 @@ const User = UserAuthModel.extend({
 	}
 })
 
-export { User,DishModel }
+export { User,DishModel,DishCollection }

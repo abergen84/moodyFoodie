@@ -2,6 +2,7 @@
 
 import {User} from './models/models'
 import {DishModel} from './models/models'
+import DISHSTORE from './store'
 
 const ACTIONS = {
 
@@ -47,6 +48,10 @@ const ACTIONS = {
             alert("Error", err)
             console.log(err)
         })
+    },
+
+    fetchDishes: function(){
+        DISHSTORE.data.dishCollection.fetch()
     }
 }
 
