@@ -80,6 +80,7 @@ let Dish = require('../db/schema.js').Dish
 
 
 
+
     // Routes for a Model(resource) should have this structure
 
 //STEP FOUR (build your server side apiroutes)
@@ -96,6 +97,21 @@ apiRouter.post('/dishes', function(request, response) {
         }
     })
 })
+
+apiRouter.put('/dishes/:_id', function(request,response){
+  Dish.findByIdAndUpdate(request.params._id, request.body, function(error, records){
+    if(error){
+      console.log(error)
+      response.send(error)
+    }
+    else {
+      console.log(records)
+      response.json(records)
+    }
+  })
+})
+
+
 
 //this route will show us all the dishes posted by all users
 apiRouter.get('/dishes', function(request, response) {

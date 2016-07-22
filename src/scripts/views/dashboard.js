@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './header'
 import DISHSTORE from '../store'
 import ACTIONS from '../actions'
+import {User} from '../models/models'
 
 const Dashboard = React.createClass({
 	 
@@ -21,12 +22,20 @@ const Dashboard = React.createClass({
 		DISHSTORE.off('updateContent')
 	},
 
+	_handleTagSearch: function(evt){
+		if(evt.keyCode === 13){
+			ACTIONS.fetchDishes(evt.target.value)
+			evt.target.value = ''
+		}
+	},
+
 	render: function() {
 		console.log('rendering')
 		console.log(this.state.dishCollection)
 	 	return (
 	 		<div className='dashboard' >
 	 			<Header />
+				<input onKeyDown={this._handleTagSearch} type="text" name="tags" placeholder="input tags separated by comma" />
 	 			<h3>dashboard</h3>
 	 			<DishContainer dishColl={this.state.dishCollection}/>
 	 		</div>
@@ -50,6 +59,11 @@ const DishContainer = React.createClass({
 })
 
 const Dish = React.createClass({
+	
+	_handleLikes: function(){
+		ACTIONS.likeDish(this.props.dishModel,User.getCurrentUser())
+	},
+
 	render: function() {
 		console.log(this)
 		return (
@@ -57,6 +71,9 @@ const Dish = React.createClass({
 				<p>{this.props.dishModel.get('title')}</p>
 				<p>{this.props.dishModel.get('description')}</p>
 				<img src={this.props.dishModel.get('imageUrl')} />
+				<p>tags: {this.props.dishModel.get('tags')}</p>
+				<button onClick={this._handleLikes}>like</button>
+				<p>likes: {this.props.dishModel.get('likes').length}</p>
 			</div>
 			)
 	}

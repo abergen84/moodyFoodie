@@ -27,7 +27,8 @@ const DishPostingForm = React.createClass({
 			rating: event.currentTarget.rating.value,
 			authorId: User.getCurrentUser()._id,
 			authorEmail: User.getCurrentUser().email,
-			imageUrl: this.url ? this.url : '/images/empty-plate.jpg'
+			imageUrl: this.url ? this.url : '/images/empty-plate.jpg',
+			tags: event.currentTarget.tags.value.split(',')
 		})
 	},
 

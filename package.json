@@ -64,6 +64,7 @@
     "passport-local": "^1.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-filepicker": "^0.7.1"
+    "react-filepicker": "^0.7.1",
+    "toastr": "^2.1.2"
   }
 }
