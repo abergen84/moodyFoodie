@@ -1,13 +1,18 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Gentium+Book+Basic);
+
 * {
 	font-family: Helvetica, Arial, sans-serif;
 	box-sizing: border-box;
+	font-family: "Gentium Book Basic";
+	color: #fff;
 }
 
-h1 {
-	font-size: 52px;
-	text-align: center;
-	color: fuchsia;
-}
+// h1 {
+// 	font-size: 52px;
+// 	text-align: center;
+// 	color: fuchsia;
+// }
 
 h1,h2,h3,h4,h5,h6 {
 	text-align: center;
@@ -17,12 +22,14 @@ img {
 	max-width: 100%;
 }
 
-$ourOrange: #FF840A;
+$ourGray: #777;
 $ourPink: #FE0AFF;
 $ourBlue: #0A85FF;
+$theRed: #CC0000;
+$theGrey: #8B898A;
 
 body {
-	background: $ourOrange;
+	background: $theGrey;
 }
 
 button {
@@ -121,22 +128,72 @@ form {
 #headerContainer {
 	text-align: center;
 
-	h1, marquee {
+	h1 {
 		text-align: center;
-		color: $ourBlue;
+		color: #fff;
 		font-size: 64px;
 		font-weight: bolder;
 		margin: 5%;
+		font-family: "Open Sans";
+		font-weight: 700;
+		text-transform: uppercase;
+		// letter-spacing: 1px;
+		span {
+			font-style: italic;
+			font-weight: 400;
+			text-transform: lowercase;
+		}
 	}
 
 	#navBar {
+		background: $theRed;
+		padding: 20px;
 		a {
-			background: $ourPink ;
+			// background: $ourPink ;
 			color: white;
 			padding: 1.5%;
 			margin: 2%;
 			text-decoration: none;
 		}
 	}
-	margin-bottom: 10%;
+}
+
+.dishContainer {
+	.dish {
+		width: 60%;
+		margin: 0 auto;
+		display: block;
+		background: $theRed;
+		padding: 5px 20px;
+		margin-bottom: 20px;
+		h3 {
+			text-align: center;
+			text-transform: uppercase;
+			font-family: "Open Sans";
+		}
+	}
+}
+
+.dashboard {
+	h1 {
+		font-family: "Open Sans";
+		font-style: italic;
+	}
+	h4 {
+		display: inline-block;
+		margin-right: 10px;
+		font-size: 18px;
+	}
+	input {
+		display: inline-block;
+		font-size: 18px;
+		width: 250px;
+		color: #000;
+		transition: all .5s ease;
+		&:focus {
+			outline: none;
+			border-color: $theRed;
+
+		}
+	}
 }

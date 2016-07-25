@@ -44,7 +44,14 @@ const DishPostingForm = React.createClass({
 					<input type="text" name="title" placeholder="Enter the dish title" />
 					<textarea type="text" name="description" placeholder="What's the deal, moody foodie?" />
 					<input type="text" name="location" placeholder="Enter the location" />
-					<input type="text" name="rating" />
+					<input type="text" name="tags" placeholder="input tags separated by comma" />
+					<select name="stars">
+						<option value="1">1 &#9733;</option>
+						<option value="2">2 &#9733;&#9733;</option>
+						<option value="3">3 &#9733;&#9733;&#9733;</option>
+						<option value="4">4 &#9733;&#9733;&#9733;&#9733;</option>
+						<option value="5">5 &#9733;&#9733;&#9733;&#9733;&#9733;</option>
+					</select>
 					<ReactFilepicker apikey="AmYpS3JRRo2dPNdf5kZ76z" onSuccess={this._handleImage}/>
 					<button type="submit">post the dish</button>
 				</form>

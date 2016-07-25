@@ -53,11 +53,10 @@ const ACTIONS = {
         })
     },
 
-    fetchDishes: function(tags){
+    fetchDishes: function(queryObj){
         DISHSTORE.data.dishCollection.fetch({
-            data: { 
-                tags: tags
-            }
+            data: queryObj
+            // url: '/api/users/dishes/'
         })
     },
 
@@ -65,29 +64,31 @@ const ACTIONS = {
         // console.log(User.getCurrentUser()._id) //Step 2: save dish to server
         // dish.get('likes').push(  userObj._id)
         
-        console.log('likes array', dish.get('likes'));
-        var newVal = dish.get('likes').concat(userObj._id)
-        console.log(newVal)
+        // console.log('likes array', dish.get('likes'));
+        // console.log(newVal)
         
-        var mod = new DishModel(dish.toJSON())
-        mod.set({
-            'likes' : newVal
+        // var mod = new DishModel(dish.toJSON())
+        dish.set({
+            likes : dish.get('likes').concat(userObj._id)
         })
 
-        console.log('before saving??' , dish.attributes)
+        // console.log('before saving??' , dish.attributes)
 
-        mod.save().then((responseData)=>{
-            console.log('server response', responseData)
-            console.log('dish model?', dish)
+        // dish.save().then((responseData)=>{
+        //     let dishCollCopy = new DishCollection(DISHSTORE.data.dishCollection.models)
+        //     dishCollCopy._byId[mod.id].set( responseData )
+        //     DISHSTORE.setStore('dishCollection', dishCollCopy)
 
-            let dishCollCopy = new DishCollection(DISHSTORE.data.dishCollection.models)
-            dishCollCopy._byId[mod.id].set( responseData )
-            DISHSTORE.setStore('dishCollection', dishCollCopy)
+        // })
 
-        })
-
-        // dish.save().then( ()=>  DISHSTORE.data.dishCollection.fetch() )
+        dish.save().then( ()=>  DISHSTORE.data.dishCollection.fetch() )
         
+    },
+
+    deleteDish: function(modelId){
+        console.log(modelId)
+        var oneDish = DISHSTORE.data.dishCollection.get(modelId)
+        oneDish.destroy()
     }
 
 

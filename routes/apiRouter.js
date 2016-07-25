@@ -111,6 +111,18 @@ apiRouter.put('/dishes/:_id', function(request,response){
   })
 })
 
+apiRouter.delete('/dishes/:_id', function(request,response){
+  Dish.remove({_id: request.params._id}, function(error){
+    if(error){
+      response.json(error)
+    }
+    response.json({
+      msg: `record ${request.params._id} successfully deleted`,
+      // _id: request.params._id
+    })
+  })
+})
+
 
 
 //this route will show us all the dishes posted by all users

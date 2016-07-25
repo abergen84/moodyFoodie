@@ -15,18 +15,18 @@ const DISHSTORE = _.extend(Backbone.Events, {
 		return _.clone(this.data) //making a clone because we dont want to modify the state (original data)
 	},
 
-	setStore: function(storeProp, payload){
-		if( typeof this.data[storeProp] === 'undefined' ) { throw Error(`${storeProp} property not on store.data, make sure to declare`) }
-		this.data[storeProp] = payload
-		this.emitChange()
-	},
+	// setStore: function(storeProp, payload){
+	// 	if( typeof this.data[storeProp] === 'undefined' ) { throw Error(`${storeProp} property not on store.data, make sure to declare`) }
+	// 	this.data[storeProp] = payload
+	// 	this.emitChange()
+	// },
 
-	getDataFor: function(storeProp){
-		return this.data[storeProp]
-	},
+	// getDataFor: function(storeProp){
+	// 	return this.data[storeProp]
+	// },
 
 	initialize: function(){
-		this.data.dishCollection.on('sync', this.emitChange.bind(this))
+		this.data.dishCollection.on('sync update', this.emitChange.bind(this))
 	}
 })
 

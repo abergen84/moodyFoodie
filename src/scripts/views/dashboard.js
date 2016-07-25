@@ -33,11 +33,14 @@ const Dashboard = React.createClass({
 		console.log('rendering')
 		console.log(this.state.dishCollection)
 	 	return (
-	 		<div className='dashboard' >
+	 		<div>
 	 			<Header />
-				<input onKeyDown={this._handleTagSearch} type="text" name="tags" placeholder="input tags separated by comma" />
-	 			<h3>dashboard</h3>
-	 			<DishContainer dishColl={this.state.dishCollection}/>
+		 		<div className='dashboard' >
+		 			<h1>dashboard</h1>
+		 			<h4>search: </h4>
+		 			<input onKeyDown={this._handleTagSearch} type="text" name="tags" placeholder="search for dishes" />
+		 			<DishContainer dishColl={this.state.dishCollection}/>
+		 		</div>
 	 		</div>
 	 	)
  	}
@@ -68,7 +71,7 @@ const Dish = React.createClass({
 		console.log(this)
 		return (
 			<div className="dish">
-				<p>{this.props.dishModel.get('title')}</p>
+				<h3>{this.props.dishModel.get('title')}</h3>
 				<p>{this.props.dishModel.get('description')}</p>
 				<img src={this.props.dishModel.get('imageUrl')} />
 				<p>tags: {this.props.dishModel.get('tags')}</p>
